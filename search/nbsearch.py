@@ -31,6 +31,6 @@ class NeighborSolver(Solver):
 
 
 def main(model: Interpretation) -> None:
-    best_sol = Solver(model).solve()
+    best_sol = NeighborSolver(model).solve()
     print(best_sol.cost())
     best_sol.print()

@@ -2,6 +2,7 @@ from typing import List
 
 from search.definitions.interpretation import Interpretation
 
+
 class Hanoi(Interpretation):
     def get_random_interpretation(self) -> Interpretation:
         pass

@@ -1,11 +1,10 @@
-#! /usr/bin/env python3
 from __future__ import annotations
 
 from random import randint
 from typing import List
 import sys
 import argparse
-from .interpretation import Interpretation
+from search.definitions.interpretation import Interpretation
 
 
 class Queens(Interpretation):
@@ -81,13 +80,9 @@ class Queens(Interpretation):
 
 def parse_command_line_arguments(argv: List[str]) -> argparse.Namespace:
     from search import parser_algorithms
-    parser = argparse.ArgumentParser(prog="nqueens",
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter, )
-
+    parser = parser_algorithms('nqueens')
     parser.add_argument("N", help="Number of rows or columns in NxN chess", type=int)
-    parser_algorithms(parser)
     parser.add_argument("--maxtries", metavar="num", help="Num max of tries of each loop", type=int)
-
     return parser.parse_args(args=argv)
 
 
