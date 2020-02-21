@@ -3,8 +3,10 @@ from random import random
 from search.definitions.interpretation import Interpretation
 import math
 
+from search.solver import Solver
 
-class Solver:
+
+class NeighborSolver(Solver):
 
     def __init__(self, problem: Interpretation):
         self.problem = problem

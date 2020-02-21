@@ -23,3 +23,7 @@ class Hanoi(Interpretation):
 
     def get_random_walk(self) -> List[Interpretation]:
         pass
+
+
+def main():
+    return None

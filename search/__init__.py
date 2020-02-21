@@ -1,6 +1,6 @@
-from search.nbsearch import main as nb_search
-from search.srandom import main as rand_search
+from search.nbsearch import main as nb
+from search.srandom import main as random
 
-nb = nb_search
-random = rand_search
 
+def parser_algorithms(parser) -> None:
+    parser.add_argument("algorithm", metavar="algorithm", help="Name of the algorithm to use", choices=["random", "nb"])

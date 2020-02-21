@@ -1,8 +1,10 @@
 from search.definitions.interpretation import Interpretation
 import math
 
+from search.solver import Solver
 
-class Solver:
+
+class RandomSolver(Solver):
 
     def __init__(self, problem: Interpretation):
         self.problem = problem
@@ -21,6 +23,6 @@ class Solver:
 
 
 def main(model: Interpretation) -> None:
-    best_sol = Solver(model).solve()
+    best_sol = RandomSolver(model).solve()
     print(best_sol.cost())
     best_sol.print()

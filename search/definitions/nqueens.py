@@ -80,24 +80,20 @@ class Queens(Interpretation):
 
 
 def parse_command_line_arguments(argv: List[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    from search import parser_algorithms
+    parser = argparse.ArgumentParser(prog="nqueens",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter, )
 
-    parser.add_argument("problem", help="Problem.", type=str)
     parser.add_argument("N", help="Number of rows or columns in NxN chess", type=int)
-    parser.add_argument("algorithm", help="Name of the algorithm to use")
-    parser.add_argument("--maxtries", help="Num max of tries of each loop")
+    parser_algorithms(parser)
+    parser.add_argument("--maxtries", metavar="num", help="Num max of tries of each loop", type=int)
 
     return parser.parse_args(args=argv)
 
 
-def main() -> None:
-    parser = parse_command_line_arguments(sys.argv)
+def main(argv: List[str]) -> None:
+    import search
+    parser = parse_command_line_arguments(argv)
     queen = Queens(parser.N)
-    module = __import__("search")
-    search = getattr(module, parser.algorithm)
+    search = getattr(search, parser.algorithm)
     search(queen)
-
-
-if __name__ == '__main__':
-    main()

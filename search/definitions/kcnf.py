@@ -22,6 +22,9 @@ class Clause:
             if random.random() < 0.5:
                 self.lits[i] *= -1
 
+    def __len__(self):
+        return len(self.lits)
+
 
 class CNF(Interpretation):
 
@@ -35,6 +38,8 @@ class CNF(Interpretation):
             self.gen_random_clauses()
         else:
             self.clauses = clauses
+        self.interpretation = dict()
+        self.get_random_interpretation()
 
     def gen_random_clauses(self) -> Interpretation:
         for i in range(self.num_clauses):
@@ -44,16 +49,17 @@ class CNF(Interpretation):
 
     def get_random_interpretation(self) -> Interpretation:
         for i in range(0, self.num_clauses - 1):
-            lit = random.choice(self.clauses[i])
+            index_lit = random.randint(len(self.clauses[i]))
             op = random.choice([-1, 1])
 
-        return None
+        return self
 
     def cost(self) -> int:
         pass
 
     def copy(self) -> Interpretation:
-        pass
+        c = CNF(self.num_vars, self.num_clauses, self.clause_len, self.clauses.copy())
+        return c
 
     def print(self) -> None:
         pass
@@ -86,7 +92,3 @@ def main() -> None:
     module = __import__("search")
     search = getattr(module, parser.algorithm)
     search(kcnf)
-
-
-if __name__ == '__main__':
-    main()
